@@ -3773,7 +3773,7 @@ namespace mtlpp
     Device Resource::GetDevice() const
     {
         Validate();
-        return Device([(__bridge id<MTLResource>)m_ptr device]);
+        return ns::Handle{ (__bridge void*)[(__bridge id<MTLResource>)m_ptr device] };
     }
 
     ns::String Resource::GetLabel() const

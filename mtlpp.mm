@@ -1327,12 +1327,6 @@ namespace mtlpp
         return ns::Handle{ (__bridge void*)[(__bridge id<MTLDevice>)m_ptr newTextureWithDescriptor:(__bridge MTLTextureDescriptor*)descriptor.GetPtr()] };
     }
 
-    Texture Device::NewTexture(const TextureDescriptor& descriptor, IOSurfaceRef ioSurface)
-    {
-        Validate();
-        return ns::Handle{ (__bridge void*)[(__bridge id<MTLDevice>)m_ptr newTextureWithDescriptor:(__bridge MTLTextureDescriptor*)descriptor.GetPtr()  iosurface:ioSurface plane:0] };
-    }
-
     //- (id <MTLTexture>)newTextureWithDescriptor:(MTLTextureDescriptor *)descriptor iosurface:(IOSurfaceRef)iosurface plane:(NSUInteger)plane NS_AVAILABLE_MAC(10_11);
     SamplerState Device::NewSamplerState(const SamplerDescriptor& descriptor)
     {
@@ -3775,6 +3769,13 @@ namespace mtlpp
 
 namespace mtlpp
 {
+
+    Device Resource::GetDevice() const
+    {
+        Validate();
+        return Device([(__bridge id<MTLResource>)m_ptr device]);
+    }
+
     ns::String Resource::GetLabel() const
     {
         Validate();

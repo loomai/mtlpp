@@ -1085,6 +1085,7 @@ namespace mtlpp
 // #include "pixel_format.hpp"
 // #include "resource.hpp"
 // #include "library.hpp"
+#include <IOSurface/IOSurface.h>
 
 namespace mtlpp
 {
@@ -1178,6 +1179,7 @@ namespace mtlpp
         Buffer NewBuffer(void* pointer, uint32_t length, ResourceOptions options, std::function<void (void* pointer, uint32_t length)> deallocator);
         DepthStencilState NewDepthStencilState(const DepthStencilDescriptor& descriptor);
         Texture NewTexture(const TextureDescriptor& descriptor);
+        Texture NewTexture(const TextureDescriptor& descriptor, IOSurfaceRef ioSurface);
         //- (id <MTLTexture>)newTextureWithDescriptor:(MTLTextureDescriptor *)descriptor iosurface:(IOSurfaceRef)iosurface plane:(NSUInteger)plane NS_AVAILABLE_MAC(10_11);
         SamplerState NewSamplerState(const SamplerDescriptor& descriptor);
         Library NewDefaultLibrary();
